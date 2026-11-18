@@ -9,21 +9,28 @@
 #include "Shader2D.h"
 #include "Renderer2D.h"
 #include "OpenGLClass.h"
+#include "ResourceManager.h"
 
 class Model {
 public:
+///////////////////////////
+////////ATRIBUTOS/////////
     glm::vec2 position;
     glm::vec2 size;
     float rotation = 0.0f;
-
-    // recursos (pueden venir de ResourceManager más adelante)
     Texture2D texture;
     Shader2D spriteShader;
-    std::shared_ptr<Renderer2D> rendererPtr;
-
-    // paths (opcional)
+    //std::shared_ptr<Renderer2D> rendererPtr;
+    //NOTA:   paths (opcional)
     std::string VSPath, FSPath, imagenPath;
 
+    bool debugHitbox = false;
+    glm::vec3 debugHitboxColor = glm::vec3(0.0f, 1.0f, 1.0f);
+    void setDebugHitbox(bool v) { debugHitbox = v; }
+    void setDebugHitboxColor(const glm::vec3& c) { debugHitboxColor = c; }
+
+///////////////////////////
+////////CONSTRUCTORES//////
     Model(const glm::vec2& pos,
         const glm::vec2& sz,
         OpenGLClass* og,
@@ -31,16 +38,22 @@ public:
         const std::string& FSPath_,
         const std::string& imagenPath_,
         const glm::mat4& projection);
-
     virtual ~Model() = default;
 
-    virtual void liberarMemoria();
+///////////////////////////
+/////SETTERS Y GETTERS/////
 
+////////////////////////
+////////METODOS/////////
+    virtual void liberarMemoria();
     virtual void update(float delta) = 0;
     virtual void draw(const glm::mat4& projection);
 
 protected:
+////////////////////////
+////////METODOS --/////
     GLuint quadVAO = 0;
+    GLuint VBO = 0;
     void initRenderData();
 };
 

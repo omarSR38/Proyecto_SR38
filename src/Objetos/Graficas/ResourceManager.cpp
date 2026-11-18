@@ -47,10 +47,15 @@ std::shared_ptr<Renderer2D> ResourceManager::GetOrCreateRenderer(const std::stri
     if (it != renderers.end()) return it->second;
 
     if (!shader) return nullptr;
-    auto rend = std::make_shared<Renderer2D>(*shader); // constructor actual toma Shader2D&
+    auto rend = std::make_shared<Renderer2D>(shader); // constructor actual toma Shader2D&
     // Si cambiamos Renderer2D para aceptar shared_ptr<Shader2D>, ajusta aquí
     renderers[key] = rend;
     return rend;
+}
+
+std::shared_ptr<Renderer2D> ResourceManager::GetRenderer(const std::string& key) {
+    auto it = renderers.find(key);
+    return (it != renderers.end()) ? it->second : nullptr;
 }
 
 void ResourceManager::Clear() {

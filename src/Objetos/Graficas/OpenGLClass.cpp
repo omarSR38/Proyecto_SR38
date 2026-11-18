@@ -7,9 +7,9 @@
 OpenGLClass::OpenGLClass() : m_window(nullptr), m_screenWidth(0), m_screenHeight(0) {
 	m_input = 0;
 }
-OpenGLClass::OpenGLClass(const OpenGLClass& other)
-{
-}
+//OpenGLClass::OpenGLClass(const OpenGLClass& other)
+//{
+//}
 OpenGLClass::~OpenGLClass()
 {
 	OpenGLClass::Shutdown();

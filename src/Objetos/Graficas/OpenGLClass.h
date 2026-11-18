@@ -88,7 +88,12 @@ class OpenGLClass
 public:
 	//CONTRSTRUCTORES:
 	OpenGLClass();
-	OpenGLClass(const OpenGLClass&);
+	//OpenGLClass(const OpenGLClass&);
+	OpenGLClass(const OpenGLClass&) = delete;
+	OpenGLClass& operator=(const OpenGLClass&) = delete;
+
+	OpenGLClass(OpenGLClass&&) = delete;
+	OpenGLClass& operator=(OpenGLClass&&) = delete;
 	~OpenGLClass();
 
 	//SET Y GET:

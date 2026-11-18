@@ -1,11 +1,7 @@
-// PixelPerfectRenderer.cpp
-
 #include "PixelPerfectRenderer.h"
-//#include <glad/glad.h>
-//#include <iostream>
 
-
-
+///////////////////////////
+////////CONSTRUCTORES//////
 PixelPerfectRenderer::PixelPerfectRenderer(OpenGLClass* opengl, GLFWwindow* window, int vw, int vh)
     : m_opengl(opengl)
     , m_window(window)
@@ -18,8 +14,6 @@ PixelPerfectRenderer::PixelPerfectRenderer(OpenGLClass* opengl, GLFWwindow* wind
     , quadVBO(0)
     , blitShader(opengl)
 {}
-
-
 PixelPerfectRenderer::~PixelPerfectRenderer() {
     glDeleteFramebuffers(1, &fbo);
     glDeleteTextures(1, &textura);
@@ -27,7 +21,14 @@ PixelPerfectRenderer::~PixelPerfectRenderer() {
     glDeleteVertexArrays(1, &quadVAO);
     glDeleteBuffers(1, &quadVBO);
 }
-
+PixelPerfectRenderer::PixelPerfectRenderer() {}
+///////////////////////////
+/////SETTERS Y GETTERS/////
+GLuint PixelPerfectRenderer::GetFramebufferTexture() const {
+    return textura;
+}
+////////////////////////
+////////METODOS/////////
 bool PixelPerfectRenderer::Initialize() {
     // 1) Setup FBO
     glGenFramebuffers(1, &fbo);
@@ -85,12 +86,10 @@ bool PixelPerfectRenderer::Initialize() {
 
     return true;
 }
-
 void PixelPerfectRenderer::Begin() {
     glBindFramebuffer(GL_FRAMEBUFFER, fbo);
     glViewport(0, 0, virtualWidth, virtualHeight);
 }
-
 void PixelPerfectRenderer::End() {
     // Restore default framebuffer and compute scaled viewport
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -114,11 +113,8 @@ void PixelPerfectRenderer::End() {
     glBindVertexArray(0);
 }
 
+//*********SIN USAR*********
+//#include <glad/glad.h>
+//#include <iostream>
+// PixelPerfectRenderer.cpp
 
-GLuint PixelPerfectRenderer::GetFramebufferTexture() const {
-    return textura;
-}
-
-PixelPerfectRenderer::PixelPerfectRenderer() {
-
-}

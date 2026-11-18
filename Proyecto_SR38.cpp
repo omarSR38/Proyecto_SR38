@@ -22,6 +22,7 @@ int main() {
     juego1.run();
 
     //EJEMPLO HOLA MUNDO HOLA TRIANGULO
+    //
     
     //// 1. Inicializar OpenGL y ventana
     //OpenGLClass opengl;

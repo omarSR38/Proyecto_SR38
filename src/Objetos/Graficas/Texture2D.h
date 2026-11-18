@@ -8,22 +8,29 @@
 
 class Texture2D {
 public:
-    //CONTRSTRUCTORES:
+///////////////////////////
+////////ATRIBUTOS/////////
+
+///////////////////////////
+////////CONSTRUCTORES//////
     Texture2D(OpenGLClass* opengl);
     ~Texture2D();
 
-    //SET Y GET:
+///////////////////////////
+/////SETTERS Y GETTERS/////
     int GetWidth() const;
     int GetHeight() const;
 
-    //METODOS:
+////////////////////////
+////////METODOS/////////
     bool LoadFromFile(const std::string& filename, bool flipVertical = true);
     void Bind(unsigned int slot = 0) const;
     void Unbind() const;
     void Release();
 
 private:
-    //ATRIBUTOS A USAR:
+///////////////////////////
+////////ATRIBUTOS -///////
     unsigned int m_textureID;
     int m_width;
     int m_height;

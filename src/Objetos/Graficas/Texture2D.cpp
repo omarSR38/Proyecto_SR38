@@ -1,6 +1,7 @@
 #include "Texture2D.h"
 
-//CONTRSTRUCTORES:
+///////////////////////////
+////////CONSTRUCTORES//////
 Texture2D::Texture2D(OpenGLClass* opengl)
     :m_textureID(0), m_width(0), m_height(0), m_channels(0) {
 }
@@ -8,7 +9,8 @@ Texture2D::~Texture2D() {
     Release();
 }
 
-//SET Y GET:
+///////////////////////////
+/////SETTERS Y GETTERS/////
 int Texture2D::GetWidth() const {
     return m_width;
 }
@@ -16,7 +18,8 @@ int Texture2D::GetHeight() const {
     return m_height;
 }
 
-//METODOS:
+////////////////////////
+////////METODOS/////////
 bool Texture2D::LoadFromFile(const std::string& filename, bool flipVertical) {
 
 

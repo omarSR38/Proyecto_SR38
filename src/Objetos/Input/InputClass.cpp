@@ -40,9 +40,9 @@ InputClass::InputClass(int screenWidth, int screenHeight)
 	InitializeWithMouse(screenWidth, screenHeight);
 }
 
-InputClass::InputClass(const InputClass& other)
-{
-}
+//InputClass::InputClass(const InputClass& other)
+//{
+//}
 
 InputClass::~InputClass() {
 	Shutdown();
@@ -183,7 +183,7 @@ bool InputClass::GetKey(KeyBoard::Keys key) {
 }
 
 void InputClass::SetKey(KeyBoard::Keys key, bool f) {
-	KEYS[key] = true;
+	KEYS[key] = f;
 }
 bool InputClass::GetKeyDown(KeyBoard::Keys key) {
 	return KEYSDOWN[key];

@@ -29,7 +29,7 @@ set(SOURCES_CPP
     "${PROJECT_SOURCE_DIR}/src/Objetos/Input/InputClass.cpp"
     "${PROJECT_SOURCE_DIR}/src/Objetos/Input/gamepad.c"
     "${PROJECT_SOURCE_DIR}/lib/glad.c"
- "src/Objetos/Graficas/ResourceManager.h" "src/Objetos/Graficas/ResourceManager.cpp")
+ "src/Objetos/Graficas/ResourceManager.h" "src/Objetos/Graficas/ResourceManager.cpp" "src/Objetos/MenuScene.h" "src/Objetos/MenuScene.cpp" "src/Objetos/Nivel.h" "src/Objetos/Nivel.cpp" "src/Objetos/DialogueBox.h" "src/Objetos/DialogueBox.cpp" "src/Objetos/Text/TextRenderer.h" "src/Objetos/Text/TextRenderer.cpp" "src/Objetos/Text/AlfabetoGlyphs.h")
 
 # Archivos C puros
 set(SOURCES_C
@@ -38,15 +38,15 @@ set(SOURCES_C
 )
 
 # Crear librerías estáticas internas
-add_library(glad_static STATIC ${PROJECT_SOURCE_DIR}/lib/glad.c "src/Objetos/Graficas/ResourceManager.h" "src/Objetos/Graficas/ResourceManager.cpp")
+add_library(glad_static STATIC ${PROJECT_SOURCE_DIR}/lib/glad.c "src/Objetos/Graficas/ResourceManager.h" "src/Objetos/Graficas/ResourceManager.cpp" "src/Objetos/MenuScene.h" "src/Objetos/MenuScene.cpp" "src/Objetos/Nivel.h" "src/Objetos/Nivel.cpp" "src/Objetos/DialogueBox.h" "src/Objetos/DialogueBox.cpp" "src/Objetos/Text/TextRenderer.h" "src/Objetos/Text/TextRenderer.cpp" "src/Objetos/Text/AlfabetoGlyphs.h")
 set_source_files_properties(${PROJECT_SOURCE_DIR}/lib/glad.c PROPERTIES LANGUAGE C)
 
-add_library(gamepad_static STATIC ${PROJECT_SOURCE_DIR}/src/Objetos/Input/gamepad.c "src/Objetos/Graficas/ResourceManager.h" "src/Objetos/Graficas/ResourceManager.cpp")
+add_library(gamepad_static STATIC ${PROJECT_SOURCE_DIR}/src/Objetos/Input/gamepad.c "src/Objetos/Graficas/ResourceManager.h" "src/Objetos/Graficas/ResourceManager.cpp" "src/Objetos/MenuScene.h" "src/Objetos/MenuScene.cpp" "src/Objetos/Nivel.h" "src/Objetos/Nivel.cpp" "src/Objetos/DialogueBox.h" "src/Objetos/DialogueBox.cpp" "src/Objetos/Text/TextRenderer.h" "src/Objetos/Text/TextRenderer.cpp" "src/Objetos/Text/AlfabetoGlyphs.h")
 set_source_files_properties(${PROJECT_SOURCE_DIR}/src/Objetos/Input/gamepad.c PROPERTIES LANGUAGE C)
 target_compile_definitions(gamepad_static PRIVATE GAMEPAD_STATIC_LIB)
 
 # Ejecutable principal
-add_executable(${PROJECT_NAME} ${SOURCES_CPP} "src/Objetos/Graficas/ResourceManager.h" "src/Objetos/Graficas/ResourceManager.cpp")
+add_executable(${PROJECT_NAME} ${SOURCES_CPP} "src/Objetos/Graficas/ResourceManager.h" "src/Objetos/Graficas/ResourceManager.cpp" "src/Objetos/MenuScene.h" "src/Objetos/MenuScene.cpp" "src/Objetos/Nivel.h" "src/Objetos/Nivel.cpp" "src/Objetos/DialogueBox.h" "src/Objetos/DialogueBox.cpp" "src/Objetos/Text/TextRenderer.h" "src/Objetos/Text/TextRenderer.cpp" "src/Objetos/Text/AlfabetoGlyphs.h")
 
 # Directorios de inclusión
 include_directories(

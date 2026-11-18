@@ -1,6 +1,9 @@
 #include "Model.h"
-#include <iostream>
+//#include <iostream>
+#include <ResourceManager.h>
 
+///////////////////////////
+////////CONSTRUCTORES//////
 Model::Model(const glm::vec2& pos,
     const glm::vec2& sz,
     OpenGLClass* og,
@@ -15,8 +18,8 @@ Model::Model(const glm::vec2& pos,
     imagenPath = imagenPath_;
 
     // enable blending once (siempre con contexto activo)
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    //glEnable(GL_BLEND);
+    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     if (!spriteShader.Initialize(VSPath.c_str(), FSPath.c_str())) {
         std::cerr << "Error inicializando shader: " << VSPath << " / " << FSPath << "\n";
@@ -32,8 +35,10 @@ Model::Model(const glm::vec2& pos,
     initRenderData();
 }
 
+////////////////////////
+////////METODOS/////////
 void Model::initRenderData() {
-    GLuint VBO;
+    //GLuint VBO;
     float vertices[] = {
         // pos   // tex
         0.0f, 1.0f, 0.0f, 1.0f,
@@ -55,7 +60,6 @@ void Model::initRenderData() {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }
-
 void Model::draw(const glm::mat4& projection) {
     spriteShader.Use();
     glm::vec3 color(1.0f);
@@ -68,19 +72,69 @@ void Model::draw(const glm::mat4& projection) {
     model = glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
     model = glm::scale(model, glm::vec3(size, 1.0f));
     spriteShader.PonMatriz4x4("model", &model[0][0]);
-
+    if (debugHitbox) {
+        auto colorRenderer = ResourceManager::GetRenderer("outline"); // o "color"
+        if (colorRenderer) {
+            glm::vec4 c = glm::vec4(debugHitboxColor, 1.0f);
+            colorRenderer->DrawRect(position, size, c, projection, false); // filled=false -> outline
+        }
+        else {
+            // fallback: intentar crear el renderer (si no lo creaste)
+            auto colorShader = ResourceManager::GetShader("color");
+            if (colorShader) {
+                colorRenderer = ResourceManager::GetOrCreateRenderer("outline", colorShader);
+                if (colorRenderer) colorRenderer->DrawRect(position, size, glm::vec4(debugHitboxColor, 1.0f), projection, false);
+            }
+        }
+    }
     texture.Bind();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     glBindVertexArray(quadVAO);
     glDrawArrays(GL_TRIANGLES, 0, 6);
     glBindVertexArray(0);
 }
-
 void Model::liberarMemoria() {
     spriteShader.Shutdown();
     // texture.Release() si lo necesitas
     if (quadVAO) {
         glDeleteVertexArrays(1, &quadVAO);
         quadVAO = 0;
+    }
+
+    if (VBO) {
+        glDeleteBuffers(1, &VBO);
+        VBO = 0;
     }
 }
 

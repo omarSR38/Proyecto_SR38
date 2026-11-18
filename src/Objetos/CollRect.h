@@ -17,6 +17,17 @@ struct CollRect {
         return !(x + width < other.x || other.x + other.width < x ||
             y + height < other.y || other.y + other.height < y);
     }
+
+    bool contains(float px, float py) const {
+        return px >= x && px <= x + width &&
+            py >= y && py <= y + height;
+    }
+
+    // Solapamiento estricto: tocar el borde NO cuenta como choque.
+    bool overlaps(const CollRect& o) const {
+        return x < o.x + o.width && x + width  > o.x &&
+            y < o.y + o.height && y + height > o.y;
+    }
 };
 
 #endif // COLLRECT_H

@@ -3,6 +3,7 @@
 
 #include "PixelPerfectRenderer.h"
 #include "Scene.h"
+#include "NivelMenu.h"
 //#include "Personaje.h"
 //#include "Shader2D.h"
 //#include <glm/gtc/matrix_transform.hpp>
@@ -12,6 +13,7 @@ class Game {
 public:
     //ATRIBUTOS A USAR:
     Scene currentScene;
+    //NivelMenu menuLevel;
 
     //CONTRSTRUCTORES:
     Game();

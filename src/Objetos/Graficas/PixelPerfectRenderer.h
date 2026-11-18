@@ -14,14 +14,17 @@ class OpenGLClass; // forward
 
 class PixelPerfectRenderer {
 public:
-    //CONTRSTRUCTORES:
+    ///////////////////////////
+    ////////CONSTRUCTORES//////
     PixelPerfectRenderer(OpenGLClass* opengl, GLFWwindow* window, int virtualWidth, int virtualHeight);
     ~PixelPerfectRenderer();
     PixelPerfectRenderer();
 
-    //SET Y GET:
+    ///////////////////////////
+    /////SETTERS Y GETTERS/////
 
-    //METODOS:
+////////////////////////
+////////METODOS/////////
     // NOTA: Configura FBO, quad y shader de blit
     bool Initialize();
     // NOTA: Inicia render a FBO
@@ -32,7 +35,8 @@ public:
     GLuint GetFramebufferTexture() const;
 
 private:
-    //ATRIBUTOS A USAR:
+    ///////////////////////////
+    ////////ATRIBUTOS -///////
     //NOTA: APUNTADOR A VARIABLE EXTERNA DE OpenGLClass
     OpenGLClass* m_opengl;       // Wrapper de OpenGL con funciones cargadas
     //NOTA: APUNTADOR A VARIABLE EXTERNA DE OpenGLClass
@@ -41,11 +45,11 @@ private:
     Shader2D blitShader;
     int virtualWidth;            // Anchura lógica
     int virtualHeight;           // Altura lógica
-    // Recursos del FBO
+    // Nota: Recursos del FBO
     GLuint fbo;
     GLuint textura;
     GLuint rbo;
-    // Quad para blit
+    // Nota: Quad para blit
     GLuint quadVAO;
     GLuint quadVBO;
 

@@ -8,6 +8,7 @@
 #include "Graficas/Texture2D.h"
 #include "Graficas/Shader2D.h"
 #include "Graficas/Renderer2D.h"
+#include "CollRect.h"
 //#include "Graficas/OpenGLClass.h"
 
 class ResourceManager {
@@ -20,6 +21,9 @@ public:
     static std::shared_ptr<Shader2D> GetShader(const std::string& key);
 
     static std::shared_ptr<Renderer2D> GetOrCreateRenderer(const std::string& key, std::shared_ptr<Shader2D> shader);
+    static std::shared_ptr<Renderer2D> GetRenderer(const std::string& key);
+
+
 
     // Libera todo (usar al cerrar)
     static void Clear();

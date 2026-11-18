@@ -1,7 +1,9 @@
 // Terreno.h
 #ifndef TERRENO_H
 #define TERRENO_H
+#include <vector>
 #include "Model.h"
+#include "CollRect.h"      // ajusta la ruta si está en otra carpeta
 
 class Terreno : public Model {
 public:
@@ -13,6 +15,16 @@ public:
         const glm::mat4& projection);
 
     void update(float delta) override; // normalmente vacío
+
+    // Paredes (coordenadas lógicas absolutas)
+    void addWall(float x, float y, float w, float h);
+    const std::vector<CollRect>& getWalls() const;
+    void setDebugWalls(bool v);
+    void drawWalls(const glm::mat4& projection);
+
+private:
+    std::vector<CollRect> walls;
+    bool debugWalls = false;
 };
 #endif
 

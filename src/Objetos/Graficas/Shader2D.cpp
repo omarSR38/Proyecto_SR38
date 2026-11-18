@@ -1,16 +1,20 @@
 #include "Shader2D.h"
 
-//CONTRSTRUCTORES:
+///////////////////////////
+////////CONSTRUCTORES//////
 Shader2D::Shader2D(OpenGLClass* OpenGL)
     : m_vertexShader(0), m_fragmentShader(0), m_shaderProgram(0) {}
 Shader2D::~Shader2D() {
     Shutdown();
 }
-Shader2D::Shader2D() {
-
+Shader2D::Shader2D()
+    : m_vertexShader(0),
+    m_fragmentShader(0),
+    m_shaderProgram(0) {
 }
 
-//SET Y GET:
+///////////////////////////
+/////SETTERS Y GETTERS/////
 bool Shader2D::SetInt(const char* nombre, int valor) {
     int location = glGetUniformLocation(m_shaderProgram, nombre);
     if (location == -1) return false;
@@ -18,7 +22,8 @@ bool Shader2D::SetInt(const char* nombre, int valor) {
     return true;
 }
 
-//METODOS:
+////////////////////////
+////////METODOS/////////
 //PUBLICOS
 bool Shader2D::Initialize(const char* vsFilename, const char* fsFilename) {
     return InitializeShader(vsFilename, fsFilename);
@@ -29,14 +34,14 @@ void Shader2D::Shutdown() {
 void Shader2D::Use() {
     glUseProgram(m_shaderProgram);
 }
-//CONTROL MATRICES
+//NOTA: CONTROL MATRICES
 bool Shader2D::PonMatriz4x4(const char* nombre, const float* matriz) {
     GLint location = glGetUniformLocation(m_shaderProgram, nombre);
     if (location == -1) return false;
     glUniformMatrix4fv(location, 1, GL_FALSE, matriz);
     return true;
 }
-bool Shader2D::PonVec3(const char* nombre, float* vector) {
+bool Shader2D::PonVec3(const char* nombre, const float* vector) {
     GLint location = glGetUniformLocation(m_shaderProgram, nombre);
     if (location == -1) return false;
     glUniform3fv(location, 1, vector);
@@ -147,15 +152,15 @@ void Shader2D::OutputLinkerErrorMessage(unsigned int programId) {
 }
 
 
-//SIN USAR (PARA REGISTRO):
-//CONTROL MATRICES
+//*********SIN USAR********* (PARA REGISTRO):
+//NOTA:CONTROL MATRICES
 bool Shader2D::Pon1Entero(const char* nombre, unsigned int valor) {
     GLint location = glGetUniformLocation(m_shaderProgram, nombre);
     if (location == -1) return false;
     glUniform1i(location, valor);
     return true;
 }
-bool Shader2D::PonVec4(const char* nombre, float* vector) {
+bool Shader2D::PonVec4(const char* nombre, const float* vector) {
     GLint location = glGetUniformLocation(m_shaderProgram, nombre);
     if (location == -1) return false;
     glUniform4fv(location, 1, vector);

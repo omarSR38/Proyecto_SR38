@@ -28,7 +28,9 @@ private:
 public:
 	InputClass();
 	InputClass(int screenWidth, int screenHeight);
-	InputClass(const InputClass&);
+	//InputClass(const InputClass&);
+	InputClass(const InputClass&) = delete;
+	InputClass& operator=(const InputClass&) = delete;
 	~InputClass();
 
 	bool InitializeWithMouse(int screenWidth, int screenHeight);
